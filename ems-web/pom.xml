@@ -9,11 +9,14 @@
     </parent>
 
     <artifactId>ems-web</artifactId>
-    <name></name>
+    <name>Employee Management System - Web</name>
     <packaging>war</packaging>
 
     <dependencies>
- 
+        <dependency>
+            <groupId>com.devtechgroup.ems</groupId>
+            <artifactId>ems-business-logic</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

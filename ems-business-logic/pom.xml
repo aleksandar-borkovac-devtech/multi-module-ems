@@ -9,11 +9,14 @@
     </parent>
 
     <artifactId>ems-business-logic</artifactId>
-    <name></name>
+    <name>Employee Management System - Business Logic</name>
     <packaging>jar</packaging>
 
     <dependencies>
- 
+        <dependency>
+            <groupId>com.devtechgroup.ems</groupId>
+            <artifactId>ems-data-access</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
