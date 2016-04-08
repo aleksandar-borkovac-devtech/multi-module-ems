@@ -1,15 +1,14 @@
 package com.devtechgroup.ems.business.logic.service;
 
-import com.devtechgroup.ems.business.logic.model.Employee;
-
+import com.devtechgroup.ems.business.logic.model.EmployeeDto;
 import java.util.Collection;
 
 public interface IEmployeeService {
 
-    Employee saveEmployee(Employee employee);
-    Employee editEmployee(Long id,Employee employee);
-    Collection<Employee> getAllEmployees();
-    Employee findEmployee(Long employeeId);
-    Boolean deleteEmployee(Long employeeId);
+    EmployeeDto saveEmployee(EmployeeDto employeeDto);
+    EmployeeDto editEmployee(Long id, EmployeeDto employeeDto);
+    Collection<EmployeeDto> getAllEmployees();
+    EmployeeDto findEmployee(Long Id);
+    Boolean deleteEmployee(Long Id);
 
 }
