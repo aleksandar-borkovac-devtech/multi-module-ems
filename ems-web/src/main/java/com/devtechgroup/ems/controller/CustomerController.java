@@ -11,8 +11,13 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
-    @Autowired
+
     private ICustomerService customerService;
+
+    @Autowired
+    public CustomerController(ICustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @RequestMapping(value = "/api/customer", method = RequestMethod.GET)
     public List<CustomerDto> getAll(){

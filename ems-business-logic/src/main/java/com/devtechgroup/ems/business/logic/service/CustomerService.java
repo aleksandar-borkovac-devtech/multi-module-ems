@@ -17,8 +17,7 @@ public class CustomerService implements ICustomerService{
     @Autowired
     protected ICustomerRepository customerRepository;
 
-    @Autowired
-    protected CustomerAdapter customerAdapter;
+
 
     @Override
     public CustomerDto editCustomer(Long id, CustomerDto customer){
@@ -30,12 +29,12 @@ public class CustomerService implements ICustomerService{
 
         customerRepository.save(one);
 
-        return customerAdapter.adapt(one);
+        return CustomerAdapter.adapt(one);
     }
 
     @Override
     public CustomerDto findCustomer(Long id) {
-        return customerAdapter.adapt(customerRepository.findOne(id));
+        return CustomerAdapter.adapt(customerRepository.findOne(id));
     }
 
     @Override
@@ -50,9 +49,9 @@ public class CustomerService implements ICustomerService{
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto){
-        Customer newCustom = customerAdapter.adapt(customerDto);
+        Customer newCustom = CustomerAdapter.adapt(customerDto);
         customerRepository.save(newCustom);
-        return customerAdapter.adapt(newCustom);
+        return CustomerAdapter.adapt(newCustom);
     }
 
     @Override
