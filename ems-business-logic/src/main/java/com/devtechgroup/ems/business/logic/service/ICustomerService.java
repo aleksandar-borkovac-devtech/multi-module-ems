@@ -1,13 +1,13 @@
 package com.devtechgroup.ems.business.logic.service;
 
-import com.devtechgroup.ems.business.logic.model.Customer;
+import com.devtechgroup.ems.business.logic.model.CustomerDto;
 
 import java.util.Collection;
 
 public interface ICustomerService {
-
-    Customer saveCustomer(Customer costum);
-    Boolean deleteCustomer(Long costId);
-    Customer editCustomer(Long id, Customer costum);
-
+    CustomerDto createCustomer(CustomerDto customerDto);
+    CustomerDto editCustomer(Long id, CustomerDto customer);
+    Collection<CustomerDto> getAllCustomers();
+    CustomerDto findCustomer(Long id);
+    Boolean deleteCustomer(Long Id);
 }
