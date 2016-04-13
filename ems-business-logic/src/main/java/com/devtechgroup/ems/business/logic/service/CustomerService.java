@@ -5,10 +5,14 @@ import com.devtechgroup.ems.business.logic.model.CustomerDto;
 import com.devtechgroup.ems.data.access.entity.Customer;
 import com.devtechgroup.ems.data.access.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 @Transactional
@@ -49,14 +53,25 @@ public class CustomerService implements ICustomerService{
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto){
+
         Customer newCustom = CustomerAdapter.adapt(customerDto);
+
+        newCustom.setId(customerDto.getId());
+        newCustom.setUsername(customerDto.getUsername());
+        newCustom.setPassword(new BCryptPasswordEncoder().encode(customerDto.getPassword()));
+        newCustom.setFirstName(customerDto.getFirstName());
+        newCustom.setLastName(customerDto.getLastName());
+        newCustom.setEmail(customerDto.getEmail());
+
         customerRepository.save(newCustom);
+
         return CustomerAdapter.adapt(newCustom);
     }
 
     @Override
-    public Collection<CustomerDto> getAllCustomers() {
-        return null;
+    public List<CustomerDto> getAllCustomers(){
+
+        return CustomerAdapter.adaptList(customerRepository.findAll());
     }
 
 }

@@ -1,3 +1,4 @@
+/*
 package com.devtechgroup.ems.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,17 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers().permitAll()
-                .antMatchers("/api/customer").anonymous()
-                .antMatchers("/api/**").hasAnyRole("ADMIN")
-                .antMatchers("/api/customer/**").hasAnyRole("USER")
-                .anyRequest().authenticated()
+                */
+/*.antMatchers("/api/customer", "/api/customer/1").anonymous()
+                .antMatchers("/login").anonymous()
+                .antMatchers("/api*//*
+*/
+/**").hasAnyRole("ADMIN")
+                .antMatchers("/api/customer*//*
+*/
+/**").hasAnyRole("USER")
+                .anyRequest().authenticated()*//*
+
                 .and()
                 .formLogin().loginPage("/api").defaultSuccessUrl("/api/customer")
                 .usernameParameter("username").passwordParameter("password")
@@ -45,7 +53,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
-   /* @Bean(name = "dataSource")
+   */
+/* @Bean(name = "dataSource")
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -53,6 +62,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         driverManagerDataSource.setUsername("exampleUser");
         driverManagerDataSource.setPassword("P@ssword");
         return driverManagerDataSource;
-    }*/
+    }*//*
+
 
 }
+*/
