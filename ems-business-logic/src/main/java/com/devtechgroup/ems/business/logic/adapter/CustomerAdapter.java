@@ -4,13 +4,8 @@ package com.devtechgroup.ems.business.logic.adapter;
 import com.devtechgroup.ems.business.logic.model.CustomerDto;
 import com.devtechgroup.ems.data.access.entity.Customer;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 public class CustomerAdapter {
 

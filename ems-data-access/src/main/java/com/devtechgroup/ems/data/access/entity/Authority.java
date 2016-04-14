@@ -6,21 +6,15 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table
-public class Role {
+@Table(name = "authority")
+public class Authority {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "role_user")
-    private String roleUser;
-
-    @Column(name = "role_admin")
-    private String roleAdmin;
-
-    @Column(name = "role_super")
-    private String roleSuper;
+    @Column(name = "authority_name")
+    private String authorityName;
 
 }

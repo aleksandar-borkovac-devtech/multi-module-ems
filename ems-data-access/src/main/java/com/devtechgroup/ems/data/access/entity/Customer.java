@@ -4,22 +4,28 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.internal.NotNull;
 import lombok.Data;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 
 @Data
 @Entity
-@Table
+@Table(name = "customer")
 public class Customer {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -39,5 +45,14 @@ public class Customer {
     @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
+
+    /*@JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "customer_authority",
+            joinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Authority> authorities = new HashSet<>();*/
 
 }

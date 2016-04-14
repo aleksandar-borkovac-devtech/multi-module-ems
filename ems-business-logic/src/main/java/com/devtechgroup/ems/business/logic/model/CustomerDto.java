@@ -1,15 +1,9 @@
 package com.devtechgroup.ems.business.logic.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.util.UUID;
 
 @Data
 public class CustomerDto {
@@ -37,4 +31,8 @@ public class CustomerDto {
     @Column(name = "password", nullable = false)
     private String password;
 
+    /*@Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Authority role;
+*/
 }
