@@ -1,5 +1,6 @@
 package com.devtechgroup.ems.business.logic.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 
@@ -10,7 +11,7 @@ public class CustomerDto {
 
 
     @Id
-    @Column(name = "id")
+    @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -27,7 +28,7 @@ public class CustomerDto {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    //@JsonIgnore
+    @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
 

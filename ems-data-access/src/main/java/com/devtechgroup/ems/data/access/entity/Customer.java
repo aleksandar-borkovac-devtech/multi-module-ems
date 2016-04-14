@@ -46,13 +46,12 @@ public class Customer {
     @Column(name = "password", nullable = false)
     private String password;
 
-    /*@JsonIgnore
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "customer_authority",
-            joinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Authority> authorities = new HashSet<>();*/
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "customer_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
+    private Set<Authority> authorities = new HashSet<>();
 
 }

@@ -22,10 +22,10 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.GET)
-    public CustomerDto getById(@PathVariable("id") Long id){
+    @RequestMapping(value = "/api/customer/{customer_id}", method = RequestMethod.GET)
+    public CustomerDto getById(@PathVariable("customer_id") Long customer_id){
 
-        return customerService.findCustomer(id);
+        return customerService.findCustomer(customer_id);
     }
 
     @RequestMapping(value = "/api/customer", method = RequestMethod.POST)
@@ -35,14 +35,14 @@ public class CustomerController {
         return customerService.createCustomer(customerDto);
     }
 
-    @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.PUT)
-    public CustomerDto update(@PathVariable Long id, @RequestBody CustomerDto customer){
+    @RequestMapping(value = "/api/customer/{customer_id}", method = RequestMethod.PUT)
+    public CustomerDto update(@PathVariable("customer_id") Long customer_id, @RequestBody CustomerDto customer){
 
         return customer;
     }
 
-    @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.DELETE)
-    public String delete(@PathVariable("id") Long id){
+    @RequestMapping(value = "/api/customer/{customer_id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable("customer_id") Long customer_id){
         return "deleted!";
     }
 
