@@ -1,4 +1,4 @@
-package com.devtechgroup.ems.data.access.entity;
+/*package com.devtechgroup.ems.data.access.entity;
 
 import lombok.Data;
 
@@ -17,4 +17,4 @@ public class CustomerAuthority {
     @Column(name = "name")
     private String name;
 
-}
+}*/

@@ -30,17 +30,11 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers().permitAll()
-                */
-/*.antMatchers("/api/customer", "/api/customer/1").anonymous()
+                .antMatchers("/api/customer", "/api/customer/1").anonymous()
                 .antMatchers("/login").anonymous()
-                .antMatchers("/api*//*
-*/
-/**").hasAnyRole("ADMIN")
-                .antMatchers("/api/customer*//*
-*/
-/**").hasAnyRole("USER")
-                .anyRequest().authenticated()*//*
-
+                .antMatchers("/api*").hasAnyRole("ADMIN")
+                .antMatchers("/api/customer*").hasAnyRole("USER")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/api").defaultSuccessUrl("/api/customer")
                 .usernameParameter("username").passwordParameter("password")
@@ -52,18 +46,6 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf();
 
     }
-
-   */
-/* @Bean(name = "dataSource")
-    public DriverManagerDataSource dataSource() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/simple_application");
-        driverManagerDataSource.setUsername("exampleUser");
-        driverManagerDataSource.setPassword("P@ssword");
-        return driverManagerDataSource;
-    }*//*
-
 
 }
 */

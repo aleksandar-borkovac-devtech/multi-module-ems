@@ -9,11 +9,12 @@ import javax.persistence.*;
 @Table(name = "authority")
 public class Authority {
 
-    @Id
+   /* @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id;*/
 
+    @Id
     @Column(name = "authority_name")
     private String authorityName;
 

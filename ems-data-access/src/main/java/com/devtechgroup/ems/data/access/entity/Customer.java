@@ -50,8 +50,7 @@ public class Customer {
     @ManyToMany
     @JoinTable(
             name = "customer_authority",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "customer_id")},
-            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
+            joinColumns = {@JoinColumn(name = "id", referencedColumnName = "customer_id")},
+            inverseJoinColumns = {@JoinColumn(name = "name", referencedColumnName = "authority_name")})
     private Set<Authority> authorities = new HashSet<>();
-
 }

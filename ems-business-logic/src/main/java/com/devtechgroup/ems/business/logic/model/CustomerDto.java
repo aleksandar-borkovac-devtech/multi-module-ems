@@ -5,10 +5,10 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 public class CustomerDto {
-
 
     @Id
     @Column(name = "customer_id")
@@ -28,12 +28,7 @@ public class CustomerDto {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
 
-    /*@Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private Authority role;
-*/
 }

@@ -2,17 +2,17 @@ package com.devtechgroup.ems.business.logic.service;
 
 import com.devtechgroup.ems.business.logic.adapter.CustomerAdapter;
 import com.devtechgroup.ems.business.logic.model.CustomerDto;
+import com.devtechgroup.ems.data.access.entity.Authority;
 import com.devtechgroup.ems.data.access.entity.Customer;
+import com.devtechgroup.ems.data.access.repository.IAuthorityRepository;
 import com.devtechgroup.ems.data.access.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -21,7 +21,8 @@ public class CustomerService implements ICustomerService{
     @Autowired
     protected ICustomerRepository customerRepository;
 
-
+    @Autowired
+    private IAuthorityRepository authorityRepository;
 
     @Override
     public CustomerDto editCustomer(Long id, CustomerDto customer){
@@ -56,15 +57,25 @@ public class CustomerService implements ICustomerService{
 
         Customer newCustom = CustomerAdapter.adapt(customerDto);
 
-        newCustom.setId(customerDto.getId());
-        newCustom.setUsername(customerDto.getUsername());
-        newCustom.setPassword(new BCryptPasswordEncoder().encode(customerDto.getPassword()));
-        newCustom.setFirstName(customerDto.getFirstName());
-        newCustom.setLastName(customerDto.getLastName());
-        newCustom.setEmail(customerDto.getEmail());
-        /*newCustom.setRole(customerDto.getRole());*/
+        Authority admin = authorityRepository.findOne("ROLE_ADMIN");
+        Authority user = authorityRepository.findOne("ROLE_USER");
+        Set<Authority> authorities = new HashSet<>();
 
-        customerRepository.save(newCustom);
+        try{
+            newCustom.setId(customerDto.getId());
+            newCustom.setUsername(customerDto.getUsername());
+            newCustom.setPassword(new BCryptPasswordEncoder().encode(customerDto.getPassword()));
+            newCustom.setFirstName(customerDto.getFirstName());
+            newCustom.setLastName(customerDto.getLastName());
+            newCustom.setEmail(customerDto.getEmail());
+            authorities.add(admin);
+            authorities.add(user);
+            newCustom.setAuthorities(authorities);
+            customerRepository.save(newCustom);
+        }catch (DataIntegrityViolationException e){
+            //log error
+            //throw exception
+        }
 
         return CustomerAdapter.adapt(newCustom);
     }
