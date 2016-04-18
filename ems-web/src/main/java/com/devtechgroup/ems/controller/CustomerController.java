@@ -2,15 +2,11 @@ package com.devtechgroup.ems.controller;
 
 import com.devtechgroup.ems.business.logic.model.CustomerDto;
 import com.devtechgroup.ems.business.logic.service.ICustomerService;
-import com.devtechgroup.ems.data.access.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,37 +14,41 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
-    @Autowired
+
     private ICustomerService customerService;
 
-    @RequestMapping(value = "/api/customer", method = RequestMethod.GET)
-    public List<CustomerDto> getAll(){
-
-        return new ArrayList<>();
+    @Autowired
+    public CustomerController(ICustomerService customerService) {
+        this.customerService = customerService;
     }
 
-    @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.GET)
-    public CustomerDto getById(@PathVariable String id){
+    @RequestMapping(value = "/api/customer/{customer_id}", method = RequestMethod.GET)
+    public CustomerDto getById(@PathVariable("customer_id") Long customer_id){
 
-        return new CustomerDto();
+        return customerService.findCustomer(customer_id);
     }
 
     @RequestMapping(value = "/api/customer", method = RequestMethod.POST)
-    public CustomerDto create(@RequestBody CustomerDto customer){
+    @ResponseStatus(HttpStatus.CREATED)
+    public CustomerDto createCustomer(@Valid @RequestBody CustomerDto customerDto){
 
-        CustomerDto newCustomer = customerService.createCustomer(customer);
-
-        return newCustomer;
+        return customerService.createCustomer(customerDto);
     }
 
-    @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.PUT)
-    public CustomerDto update(@PathVariable String id, @RequestBody CustomerDto customer){
+    @RequestMapping(value = "/api/customer/{customer_id}", method = RequestMethod.PUT)
+    public CustomerDto update(@PathVariable("customer_id") Long customer_id, @RequestBody CustomerDto customer){
 
         return customer;
     }
 
-    @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.DELETE)
-    public void delete(@RequestParam String id){
+    @RequestMapping(value = "/api/customer/{customer_id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable("customer_id") Long customer_id){
+        return "deleted!";
+    }
 
+    @RequestMapping(value = "/api/customer", method = RequestMethod.GET)
+    public List<CustomerDto> getAllCustomers(){
+
+        return customerService.getAllCustomers();
     }
 }

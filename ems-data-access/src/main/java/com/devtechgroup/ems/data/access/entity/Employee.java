@@ -6,11 +6,11 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table
+@Table(name = "employee")
 public class Employee {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
