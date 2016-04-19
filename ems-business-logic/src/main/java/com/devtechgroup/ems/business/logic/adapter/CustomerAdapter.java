@@ -45,9 +45,4 @@ public class CustomerAdapter {
         return customerDtoList;
     }
 
-   /* public static List<Customer> adapt(List<CustomerDto> customerDtoList){
-        return customerDtoList.stream().map(this::adapt).collect(toList());
-    }*/
-
-
 }

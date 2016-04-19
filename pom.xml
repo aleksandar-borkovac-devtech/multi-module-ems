@@ -82,7 +82,6 @@
                <version>${spring-security-crypto.version}</version>
            </dependency>
 
-
            <!--MySql-->
            <dependency>
                <groupId>mysql</groupId>
@@ -111,8 +110,6 @@
                <artifactId>jackson-annotations</artifactId>
                <version>${jackson-annotations.version}</version>
            </dependency>
-
-
 
        </dependencies>
     </dependencyManagement>
