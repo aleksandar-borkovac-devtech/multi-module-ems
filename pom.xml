@@ -34,6 +34,7 @@
         <spring-boot-starter-security.version>1.3.3.RELEASE</spring-boot-starter-security.version>
         <spring-security-crypto.version>4.0.4.RELEASE</spring-security-crypto.version>
         <jackson-annotations.version>2.7.3</jackson-annotations.version>
+        <liquibase-core.version>3.4.2</liquibase-core.version>
     </properties>
    
     <dependencyManagement>
@@ -82,13 +83,20 @@
                <version>${spring-security-crypto.version}</version>
            </dependency>
 
-
            <!--MySql-->
            <dependency>
                <groupId>mysql</groupId>
                <artifactId>mysql-connector-java</artifactId>
                <version>${mysql-connector.version}</version>
            </dependency>
+
+           <!--Liquibase-->
+           <dependency>
+               <groupId>org.liquibase</groupId>
+               <artifactId>liquibase-core</artifactId>
+               <version>${liquibase-core.version}</version>
+           </dependency>
+
 
            <!--Lombok-->
            <dependency>
