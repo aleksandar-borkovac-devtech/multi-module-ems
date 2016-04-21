@@ -21,6 +21,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         SecurityContextHolder.clearContext();
 
         CustomerDto customer = new CustomerDto(){{
+            setId(1L);
             setUsername("borkke");
             setPassword("password");
             setFirstName("Aleksandar");
