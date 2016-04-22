@@ -33,5 +33,9 @@ public abstract class BaseApiController {
         return new ResponseEntity<>(new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    protected ResponseEntity notAuthorized() {
+        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.UNAUTHORIZED);
+    }
+
 }
 
