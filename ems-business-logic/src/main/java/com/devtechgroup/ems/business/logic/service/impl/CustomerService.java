@@ -1,19 +1,18 @@
 package com.devtechgroup.ems.business.logic.service.impl;
 
-import com.devtechgroup.ems.business.logic.adapter.CustomerAdapter;
-import com.devtechgroup.ems.business.logic.model.CustomerDto;
-import com.devtechgroup.ems.business.logic.service.ICustomerService;
-import com.devtechgroup.ems.data.access.entity.Authority;
-import com.devtechgroup.ems.data.access.entity.Customer;
-import com.devtechgroup.ems.data.access.repository.IAuthorityRepository;
-import com.devtechgroup.ems.data.access.repository.ICustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+        import com.devtechgroup.ems.business.logic.adapter.CustomerAdapter;
+        import com.devtechgroup.ems.business.logic.model.CustomerDto;
+        import com.devtechgroup.ems.business.logic.service.ICustomerService;
+        import com.devtechgroup.ems.data.access.entity.Authority;
+        import com.devtechgroup.ems.data.access.entity.Customer;
+        import com.devtechgroup.ems.data.access.repository.IAuthorityRepository;
+        import com.devtechgroup.ems.data.access.repository.ICustomerRepository;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+        import org.springframework.stereotype.Service;
+        import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+        import java.util.*;
 
 @Service
 @Transactional

@@ -29,8 +29,16 @@ public abstract class BaseApiController {
         return new ResponseEntity<>(new HttpHeaders(), HttpStatus.NO_CONTENT);
     }
 
+    protected ResponseEntity update() {
+        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.MULTI_STATUS);
+    }
+
     protected ResponseEntity serverError() {
         return new ResponseEntity<>(new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    protected ResponseEntity notAuthorized() {
+        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.UNAUTHORIZED);
     }
 
 }
