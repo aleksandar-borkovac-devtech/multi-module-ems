@@ -19,7 +19,7 @@ public class EmsAuthentication implements Authentication {
 
     public EmsAuthentication(CustomerDto customer) {
         super();
-        this.customer = customer;
+        customer = customer;
     }
 
     @Override
