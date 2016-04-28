@@ -23,7 +23,7 @@ public class EmployeeService implements IEmployeeService {
 
     private IAuthorityRepository _authorityRepository;
 
-    private EmployeeAdapter employeeAdapter;
+    EmployeeAdapter employeeAdapter;
 
     @Autowired
     public EmployeeService(IEmployeeRepository employeeRepository, IAuthorityRepository authorityRepository){
@@ -57,9 +57,9 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public EmployeeDto editEmployee(Long employee_id, EmployeeDto employee) {
+    public EmployeeDto editEmployee(Long employeeId, EmployeeDto employee) {
 
-        Employee emp = _employeeRepository.findOne(employee_id);
+        Employee emp = _employeeRepository.findOne(employeeId);
 
         emp.setId(employee.getId());
         emp.setFirstName(employee.getFirstName());
@@ -74,23 +74,23 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public List<EmployeeDto> getAllEmployees() {
 
-        return employeeAdapter.adaptList(_employeeRepository.findAll());
+        return employeeAdapter.adapt(_employeeRepository.findAll());
 
     }
 
     @Override
-    public EmployeeDto findEmployee(Long employee_id) {
+    public EmployeeDto findEmployee(Long employeeId) {
 
-        return employeeAdapter.adapt(_employeeRepository.findOne(employee_id));
+        return employeeAdapter.adapt(_employeeRepository.findOne(employeeId));
 
     }
 
     @Override
-    public Boolean deleteEmployee(Long employee_id) {
+    public Boolean deleteEmployee(Long employeeId) {
 
-        Employee employee = _employeeRepository.findOne(employee_id);
-        if (employee != null){
-            _employeeRepository.delete(employee_id);
+        Employee employee = _employeeRepository.findOne(employeeId);
+        if (null != employee){
+            _employeeRepository.delete(employeeId);
             return true;
         }
         return false;

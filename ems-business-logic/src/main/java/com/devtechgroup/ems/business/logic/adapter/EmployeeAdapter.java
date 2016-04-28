@@ -39,7 +39,7 @@ public class EmployeeAdapter {
         return retVal;
     }
 
-    public static List<EmployeeDto> adaptList(List<Employee> employeeList){
+    public static List<EmployeeDto> adapt(List<Employee> employeeList){
 
         List<EmployeeDto> employeeDtoList = new ArrayList(employeeList);
 

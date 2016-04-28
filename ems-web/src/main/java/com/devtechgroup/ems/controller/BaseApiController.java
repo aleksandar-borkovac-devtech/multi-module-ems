@@ -29,8 +29,8 @@ public abstract class BaseApiController {
         return new ResponseEntity<>(new HttpHeaders(), HttpStatus.NO_CONTENT);
     }
 
-    protected ResponseEntity update() {
-        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.MULTI_STATUS);
+    protected ResponseEntity update(Object body) {
+        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.ACCEPTED);
     }
 
     protected ResponseEntity serverError() {
