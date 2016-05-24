@@ -7,11 +7,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class EmsAuthentication implements Authentication {
 
-    private CustomerDto customer;
+    private CustomerDto _customer;
 
     public EmsAuthentication() {
         super();
@@ -19,7 +18,7 @@ public class EmsAuthentication implements Authentication {
 
     public EmsAuthentication(CustomerDto customer) {
         super();
-        customer = customer;
+        _customer = customer;
     }
 
     @Override
@@ -37,12 +36,12 @@ public class EmsAuthentication implements Authentication {
 
     @Override
     public Object getDetails() {
-        return customer;
+        return _customer;
     }
 
     @Override
     public Object getPrincipal() {
-        return customer;
+        return _customer;
     }
 
     @Override
