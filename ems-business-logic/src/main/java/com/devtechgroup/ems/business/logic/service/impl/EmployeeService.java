@@ -1,13 +1,19 @@
 package com.devtechgroup.ems.business.logic.service.impl;
 
+import com.devtechgroup.ems.business.logic.adapter.CustomerAdapter;
 import com.devtechgroup.ems.business.logic.adapter.EmployeeAdapter;
+import com.devtechgroup.ems.business.logic.model.CustomerDto;
 import com.devtechgroup.ems.business.logic.model.EmployeeDto;
 import com.devtechgroup.ems.business.logic.service.IEmployeeService;
 import com.devtechgroup.ems.data.access.entity.Authority;
+import com.devtechgroup.ems.data.access.entity.Customer;
 import com.devtechgroup.ems.data.access.entity.Employee;
 import com.devtechgroup.ems.data.access.repository.IAuthorityRepository;
+import com.devtechgroup.ems.data.access.repository.ICustomerRepository;
 import com.devtechgroup.ems.data.access.repository.IEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +28,6 @@ public class EmployeeService implements IEmployeeService {
     private IEmployeeRepository _employeeRepository;
 
     private IAuthorityRepository _authorityRepository;
-
-    EmployeeAdapter employeeAdapter;
 
     @Autowired
     public EmployeeService(IEmployeeRepository employeeRepository, IAuthorityRepository authorityRepository){
@@ -44,10 +48,20 @@ public class EmployeeService implements IEmployeeService {
         newEmployee.setUsername(employeeDto.getUsername());
         newEmployee.setPassword(employeeDto.getPassword());
         newEmployee.setAuthorities(getEmployeeAuthorities());
+        newEmployee.setFk(getCurrentCustomer());
         _employeeRepository.save(newEmployee);
 
-        return employeeAdapter.adapt(newEmployee);
+        return EmployeeAdapter.adapt(newEmployee);
     }
+
+    /////////TEST/////////
+    private Customer getCurrentCustomer(){
+
+        CustomerDto activeUser = (CustomerDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return CustomerAdapter.adapt(activeUser);
+    }
+    //////////////////////
 
     private Set<Authority> getEmployeeAuthorities() {
         Authority user = _authorityRepository.findOne("ROLE_USER");
@@ -68,20 +82,20 @@ public class EmployeeService implements IEmployeeService {
         emp.setEmail(employee.getEmail());
         emp.setUsername(employee.getUsername());
 
-        return employeeAdapter.adapt(_employeeRepository.save(emp));
+        return EmployeeAdapter.adapt(_employeeRepository.save(emp));
     }
 
     @Override
     public List<EmployeeDto> getAllEmployees() {
 
-        return employeeAdapter.adapt(_employeeRepository.findAll());
+        return EmployeeAdapter.adapt(_employeeRepository.findAll());
 
     }
 
     @Override
     public EmployeeDto findEmployee(Long employeeId) {
 
-        return employeeAdapter.adapt(_employeeRepository.findOne(employeeId));
+        return EmployeeAdapter.adapt(_employeeRepository.findOne(employeeId));
 
     }
 
