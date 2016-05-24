@@ -36,6 +36,7 @@ public class Customer {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @JsonIgnore
     @OneToMany(targetEntity=Employee.class, mappedBy = "fk")
     private Set<Employee> employees;
 

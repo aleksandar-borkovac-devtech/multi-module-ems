@@ -54,14 +54,12 @@ public class EmployeeService implements IEmployeeService {
         return EmployeeAdapter.adapt(newEmployee);
     }
 
-    /////////TEST/////////
     private Customer getCurrentCustomer(){
 
         CustomerDto activeUser = (CustomerDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         return CustomerAdapter.adapt(activeUser);
     }
-    //////////////////////
 
     private Set<Authority> getEmployeeAuthorities() {
         Authority user = _authorityRepository.findOne("ROLE_USER");
@@ -81,6 +79,7 @@ public class EmployeeService implements IEmployeeService {
         emp.setCity(employee.getCity());
         emp.setEmail(employee.getEmail());
         emp.setUsername(employee.getUsername());
+        emp.setFk(getCurrentCustomer());
 
         return EmployeeAdapter.adapt(_employeeRepository.save(emp));
     }

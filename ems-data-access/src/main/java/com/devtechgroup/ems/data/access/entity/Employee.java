@@ -37,6 +37,7 @@ public class Employee {
     @Column(name = "password")
     private String password;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "fk_id")
     private Customer fk;
