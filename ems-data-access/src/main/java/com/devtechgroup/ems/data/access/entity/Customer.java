@@ -37,6 +37,10 @@ public class Customer {
     private String password;
 
     @JsonIgnore
+    @OneToMany(targetEntity=Employee.class, mappedBy = "fk")
+    private Set<Employee> employees;
+
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "customer_authority",
